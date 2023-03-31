@@ -19,18 +19,6 @@ public class PlayerScript : MonoBehaviour
     public int hungry = 100;
     public int tired = 100;
     public int cleany = 100;
-    public enum StatsToRegain : int
-    {
-        boredness = 100,
-        hungriness = 100,
-        tiredness = 100,
-        needToBeClean = 100,
-    }
-
-    public StatsToRegain stats
-    {
-        get; set;
-    }
 
     private void Update()
     {
@@ -45,18 +33,11 @@ public class PlayerScript : MonoBehaviour
                 gameObject.GetComponent<NavMeshAgent>().destination = Hitpoint;
             }
         }
-        if (isOnPlace(gameObject.transform.position, Hitpoint))
-        {
-            if (RayHit.collider.gameObject.TryGetComponent<InteractableObject>(out InteractableObject interactableObj))
-            {
-                RegainStatCoroutineStarter(interactableObj.stat);
-            }
-        }
     }
 
 
     float waitStatRegain = 0;
-    private void RegainStatCoroutineStarter(string stat)
+    public void RegainStatCoroutineStarter(string stat)
     {
         if (waitStatRegain < 1) return;
         waitStatRegain = 0;
@@ -79,7 +60,8 @@ public class PlayerScript : MonoBehaviour
 
 
     bool isOnPlace(Vector3 a, Vector3 b)
-        => a.x == b.x && a.z == b.z;
+        => a.x + 1 >= b.x && a.x - 1 <= b.x &&
+        a.z + 1 >= b.z && a.z - 1 <= b.z;
 
 
     bool waitStatLose = false;
