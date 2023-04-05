@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        if(isOnPlace(gameObject.transform.position, gameObject.GetComponent<NavMeshAgent>().destination)) gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+        else gameObject.GetComponent<Animator>().SetBool("isWalking", false);
         if (!waitStatLose) StartCoroutine(StatsChangeEverySec());;
         waitStatRegain += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
@@ -60,8 +62,8 @@ public class PlayerScript : MonoBehaviour
 
 
     bool isOnPlace(Vector3 a, Vector3 b)
-        => a.x + 1 >= b.x && a.x - 1 <= b.x &&
-        a.z + 1 >= b.z && a.z - 1 <= b.z;
+        => a.x == b.x &&
+        a.z == b.z;
 
 
     bool waitStatLose = false;
