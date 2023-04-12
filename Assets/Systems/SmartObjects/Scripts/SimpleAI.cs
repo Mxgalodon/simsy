@@ -13,15 +13,10 @@ public class SimpleAI : MonoBehaviour
 
     protected float TimeUntilNextInteractionPicked = -1f;
 
-    private void Awake()
-    {
-        
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int bored = 100;
+    public int hungry = 100;
+    public int tired = 100;
+    public int cleany = 100;
 
     // Update is called once per frame
     void Update()
