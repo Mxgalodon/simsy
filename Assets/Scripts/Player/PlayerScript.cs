@@ -144,7 +144,7 @@ public class PlayerScript : MonoBehaviour
         hungry -= 1;
         tired -= 1;
         cleany -= 1;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         waitStatLose = false;
     }
 
